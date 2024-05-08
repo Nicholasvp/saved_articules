@@ -30,6 +30,7 @@ class HomePage extends ConsumerWidget {
                     child: CircularProgressIndicator(),
                   )
                 : MyTags(controller: controller),
+            const SizedBox(height: 16),
             controller.isLoading
                 ? const Expanded(
                     child: Column(

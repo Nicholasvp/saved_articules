@@ -11,7 +11,8 @@ class MyMock {
       "addedAt": 1635637200000,
       "urlArticule": "https://example.com/articles/lorem-ipsum",
       "urlFavicon":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png",
+      "progress": 75
     },
     {
       "title": "Sample Article",
@@ -35,7 +36,8 @@ class MyMock {
       "favorite": true,
       "addedAt": 1635637200000,
       "urlArticule": "https://example.com/articles/lorem-ipsum",
-      "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png"
+      "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png",
+      "progress": 25
     },
     {
       "title": "Sample Article",
@@ -73,7 +75,8 @@ class MyMock {
       "addedAt": 1635637200000,
       "urlArticule": "https://example.com/articles/sample-article",
       "urlFavicon":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png",
+      "progress": 44
     },
   ];
 

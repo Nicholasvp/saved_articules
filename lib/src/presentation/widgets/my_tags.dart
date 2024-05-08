@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saved_articules/src/presentation/controllers/home_controller.dart';
+import 'package:saved_articules/src/theme/custom_theme.dart';
 
 class MyTags extends StatelessWidget {
   const MyTags({
@@ -22,7 +23,7 @@ class MyTags extends StatelessWidget {
             width: 80,
             margin: const EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
-              color: tag.isSelected ? Colors.red : Colors.red[100],
+              color: tag.isSelected ? Colors.red : Colors.red[200],
               borderRadius: BorderRadius.circular(8),
             ),
             child: InkWell(
@@ -30,7 +31,10 @@ class MyTags extends StatelessWidget {
                 controller.onTagSelected(tag);
               },
               child: Center(
-                child: Text(tag.title),
+                child: Text(
+                  tag.title,
+                  style: CustomTheme.bodySmall.copyWith(color: Colors.white),
+                ),
               ),
             ),
           );

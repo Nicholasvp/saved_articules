@@ -14,6 +14,8 @@ class ArticuleModel {
   final DateTime addedAt;
   final String urlArticule;
   final String urlFavicon;
+  final int? progress;
+
   ArticuleModel({
     required this.title,
     required this.description,
@@ -25,6 +27,7 @@ class ArticuleModel {
     required this.addedAt,
     required this.urlArticule,
     required this.urlFavicon,
+    this.progress,
   });
 
   ArticuleModel copyWith({
@@ -38,6 +41,7 @@ class ArticuleModel {
     DateTime? addedAt,
     String? urlArticule,
     String? urlFavicon,
+    int? progress,
   }) {
     return ArticuleModel(
       title: title ?? this.title,
@@ -50,6 +54,7 @@ class ArticuleModel {
       addedAt: addedAt ?? this.addedAt,
       urlArticule: urlArticule ?? this.urlArticule,
       urlFavicon: urlFavicon ?? this.urlFavicon,
+      progress: progress ?? this.progress,
     );
   }
 
@@ -65,6 +70,7 @@ class ArticuleModel {
       'addedAt': addedAt.millisecondsSinceEpoch,
       'urlArticule': urlArticule,
       'urlFavicon': urlFavicon,
+      'progress': progress,
     };
   }
 
@@ -80,6 +86,7 @@ class ArticuleModel {
       addedAt: DateTime.fromMillisecondsSinceEpoch(map['addedAt'] as int),
       urlArticule: map['urlArticule'] as String,
       urlFavicon: map['urlFavicon'] as String,
+      progress: map['progress'] != null ? map['progress'] as int : 0,
     );
   }
 
@@ -90,7 +97,7 @@ class ArticuleModel {
 
   @override
   String toString() {
-    return 'ArticuleModel(title: $title, description: $description, timeToRead: $timeToRead, tags: $tags, path: $path, priority: $priority, favorite: $favorite, addedAt: $addedAt, urlArticule: $urlArticule, urlFavicon: $urlFavicon)';
+    return 'ArticuleModel(title: $title, description: $description, timeToRead: $timeToRead, tags: $tags, path: $path, priority: $priority, favorite: $favorite, addedAt: $addedAt, urlArticule: $urlArticule, urlFavicon: $urlFavicon, progress: $progress)';
   }
 
   @override
@@ -106,7 +113,8 @@ class ArticuleModel {
         other.favorite == favorite &&
         other.addedAt == addedAt &&
         other.urlArticule == urlArticule &&
-        other.urlFavicon == urlFavicon;
+        other.urlFavicon == urlFavicon &&
+        other.progress == progress;
   }
 
   @override
@@ -120,6 +128,7 @@ class ArticuleModel {
         favorite.hashCode ^
         addedAt.hashCode ^
         urlArticule.hashCode ^
-        urlFavicon.hashCode;
+        urlFavicon.hashCode ^
+        progress.hashCode;
   }
 }
