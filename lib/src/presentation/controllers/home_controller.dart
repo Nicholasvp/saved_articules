@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saved_articules/src/data/repositories/home_repository.dart';
 import 'package:saved_articules/src/domain/models/articule_model.dart';
 import 'package:saved_articules/src/domain/models/tag_model.dart';
+import 'package:saved_articules/src/presentation/widgets/articule_content.dart';
 
 class HomeController extends ChangeNotifier {
   HomeController() {
@@ -81,6 +82,25 @@ class HomeController extends ChangeNotifier {
       debugPrint(articules.toString());
     } else {
       await fetchArticules();
+    }
+    notifyListeners();
+  }
+
+  void openArticule(ArticuleModel articule, BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return ArticuleContent(articule: articule);
+      },
+    );
+  }
+
+  void onFavoriteSelected(ArticuleModel articule) {
+    final index = articules.indexOf(articule);
+    final articuleSelected = articule.copyWith(favorite: !articule.favorite);
+    if (index > -1) {
+      articules[index] = articuleSelected;
     }
     notifyListeners();
   }

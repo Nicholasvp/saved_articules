@@ -19,4 +19,8 @@ class CustomTheme {
     fontSize: 14,
     color: Colors.grey,
   );
+  static const labelStrong = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
 }

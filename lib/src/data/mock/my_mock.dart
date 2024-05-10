@@ -2,14 +2,15 @@ class MyMock {
   static const List<Map<String, dynamic>> articulesMock = [
     {
       "title": "Lorem Ipsum",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "description":
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "timeToRead": "5 mins",
       "tags": ["Flutter", "Dart", "Mobile"],
       "path": "/articles/lorem-ipsum",
       "priority": "high",
       "favorite": true,
       "addedAt": 1635637200000,
-      "urlArticule": "https://example.com/articles/lorem-ipsum",
+      "urlArticule": "https://en.wikipedia.org/wiki/Main_Page",
       "urlFavicon":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png",
       "progress": 75
