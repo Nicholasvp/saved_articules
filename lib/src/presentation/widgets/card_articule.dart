@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saved_articules/src/domain/models/articule_model.dart';
 import 'package:saved_articules/src/presentation/controllers/home_controller.dart';
+import 'package:saved_articules/src/presentation/widgets/progress_articule.dart';
 import 'package:saved_articules/src/theme/custom_theme.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -89,30 +90,9 @@ class CardArticule extends StatelessWidget {
               ],
             ),
           ),
-          CircleAvatar(
-            backgroundColor: Colors.red[200],
+          ProgressArticule(
+            articule: articule,
             radius: 40,
-            child: SleekCircularSlider(
-              appearance: CircularSliderAppearance(
-                size: 80,
-                angleRange: 360,
-                startAngle: -90,
-                customWidths:
-                    CustomSliderWidths(progressBarWidth: 8, trackWidth: 8),
-                customColors: CustomSliderColors(
-                  progressBarColor: Colors.red,
-                  trackColor: Colors.red[100],
-                ),
-                infoProperties: InfoProperties(
-                  mainLabelStyle: CustomTheme.bodyMedium.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.normal),
-                  modifier: (double value) {
-                    return '${value.toInt()}%';
-                  },
-                ),
-              ),
-              initialValue: articule.progress!.toDouble(),
-            ),
           )
         ],
       ),

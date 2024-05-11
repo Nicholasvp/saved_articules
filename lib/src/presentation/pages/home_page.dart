@@ -25,13 +25,13 @@ class HomePage extends ConsumerWidget {
               style: CustomTheme.title,
             ),
             const SizedBox(height: 16),
-            controller.tags.isEmpty
+            controller.store.tags.isEmpty
                 ? const Center(
-                    child: CircularProgressIndicator(),
+                    child: LinearProgressIndicator(),
                   )
                 : MyTags(controller: controller),
             const SizedBox(height: 16),
-            controller.isLoading
+            controller.store.isLoading
                 ? const Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -52,9 +52,9 @@ class HomePage extends ConsumerWidget {
                     child: SingleChildScrollView(
                       child: ListView.builder(
                         shrinkWrap: true,
-                        itemCount: controller.articules.length,
+                        itemCount: controller.store.articules.length,
                         itemBuilder: (context, index) {
-                          final articule = controller.articules[index];
+                          final articule = controller.store.articules[index];
                           return CardArticule(
                               articule: articule, controller: controller);
                         },

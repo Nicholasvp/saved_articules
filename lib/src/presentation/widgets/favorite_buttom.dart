@@ -5,17 +5,17 @@ class FavoriteButtom extends StatelessWidget {
   const FavoriteButtom({
     super.key,
     this.isFavorite,
-    this.onPressed,
+    required this.onPressed,
   });
 
   final bool? isFavorite;
-  final Function? onPressed;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed != null ? onPressed!.call() : null,
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      onPressed: onPressed,
+      style: CustomTheme.buttomRed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -31,7 +31,7 @@ class FavoriteButtom extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             isFavorite ?? false ? 'Remove from Favorite' : 'Add on Favorite',
-            style: CustomTheme.bodyMedium.copyWith(color: Colors.white),
+            style: CustomTheme.labelStrong.copyWith(color: Colors.white),
           ),
         ],
       ),

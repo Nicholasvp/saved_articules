@@ -10,7 +10,7 @@ class ArticuleModel {
   final List<String> tags;
   final String path;
   final String priority;
-  final bool favorite;
+  bool favorite;
   final DateTime addedAt;
   final String urlArticule;
   final String urlFavicon;

@@ -15,10 +15,10 @@ class MyTags extends StatelessWidget {
     return SizedBox(
       height: 30,
       child: ListView.builder(
-        itemCount: controller.tags.length,
+        itemCount: controller.store.tags.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          final tag = controller.tags[index];
+          final tag = controller.store.tags[index];
           return Container(
             width: 80,
             margin: const EdgeInsets.only(right: 16),

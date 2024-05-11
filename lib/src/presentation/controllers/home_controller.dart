@@ -1,10 +1,9 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:saved_articules/src/data/repositories/home_repository.dart';
 import 'package:saved_articules/src/domain/models/articule_model.dart';
 import 'package:saved_articules/src/domain/models/tag_model.dart';
+import 'package:saved_articules/src/presentation/store/home_store.dart';
 import 'package:saved_articules/src/presentation/widgets/articule_content.dart';
 
 class HomeController extends ChangeNotifier {
@@ -13,21 +12,17 @@ class HomeController extends ChangeNotifier {
   }
   // REPOSITORY
   final repository = HomeRepository();
-
-  // VARIABLES
-  bool isLoading = false;
-  List<ArticuleModel> articules = [];
-  List<TagModel> tags = [];
+  final store = HomeStore();
 
   // METHODS
 
   loading() {
-    isLoading = true;
+    store.isLoading = true;
     notifyListeners();
   }
 
   completed() {
-    isLoading = false;
+    store.isLoading = false;
     notifyListeners();
   }
 
@@ -39,7 +34,7 @@ class HomeController extends ChangeNotifier {
   Future<void> fetchArticules() async {
     loading();
     var res = await repository.fetchArticules();
-    articules = res.map((e) => ArticuleModel.fromMap(e)).toList();
+    store.articules = res.map((e) => ArticuleModel.fromMap(e)).toList();
     completed();
   }
 
@@ -47,10 +42,10 @@ class HomeController extends ChangeNotifier {
     try {
       loading();
       var res = await repository.fetchTags();
-      tags = res['tags']
+      store.tags = res['tags']
           .map<TagModel>((e) => TagModel.fromMap(e as Map<String, dynamic>))
           .toList();
-      debugPrint(tags.toString());
+      debugPrint(store.tags.toString());
       completed();
     } catch (e) {
       debugPrint(e.toString());
@@ -58,16 +53,16 @@ class HomeController extends ChangeNotifier {
   }
 
   void deselectAll() {
-    tags = tags.map((e) => e.copyWith(isSelected: false)).toList();
+    store.tags = store.tags.map((e) => e.copyWith(isSelected: false)).toList();
     notifyListeners();
   }
 
   void onTagSelected(TagModel tag) {
     deselectAll();
-    final index = tags.indexOf(tag);
+    final index = store.tags.indexOf(tag);
     final tagSelected = tag.copyWith(isSelected: !tag.isSelected);
     if (index > -1) {
-      tags[index] = tagSelected;
+      store.tags[index] = tagSelected;
     }
     filterArticulesbyTags(tagSelected);
     notifyListeners();
@@ -76,10 +71,10 @@ class HomeController extends ChangeNotifier {
   void filterArticulesbyTags(TagModel tag) async {
     if (tag.isSelected) {
       await fetchArticules();
-      articules = articules
+      store.articules = store.articules
           .where((element) => element.tags.contains(tag.title))
           .toList();
-      debugPrint(articules.toString());
+      debugPrint(store.articules.toString());
     } else {
       await fetchArticules();
     }
@@ -87,22 +82,25 @@ class HomeController extends ChangeNotifier {
   }
 
   void openArticule(ArticuleModel articule, BuildContext context) {
+    store.articuleSelected = articule;
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.white,
       isScrollControlled: true,
       builder: (context) {
-        return ArticuleContent(articule: articule);
+        return const ArticuleContent();
       },
     );
   }
 
   void onFavoriteSelected(ArticuleModel articule) {
-    final index = articules.indexOf(articule);
-    final articuleSelected = articule.copyWith(favorite: !articule.favorite);
-    if (index > -1) {
-      articules[index] = articuleSelected;
-    }
+    articule.favorite = !articule.favorite;
     notifyListeners();
+  }
+
+  ArticuleModel getArticule(ArticuleModel articule) {
+    final index = store.articules.indexOf(articule);
+    return store.articules[index];
   }
 }
 
