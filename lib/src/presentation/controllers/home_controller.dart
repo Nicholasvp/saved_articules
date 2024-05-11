@@ -35,6 +35,7 @@ class HomeController extends ChangeNotifier {
     loading();
     var res = await repository.fetchArticules();
     store.articules = res.map((e) => ArticuleModel.fromMap(e)).toList();
+    store.articulesFiltered = store.articules;
     completed();
   }
 
@@ -70,14 +71,25 @@ class HomeController extends ChangeNotifier {
 
   void filterArticulesbyTags(TagModel tag) async {
     if (tag.isSelected) {
-      await fetchArticules();
-      store.articules = store.articules
+      store.articulesFiltered = store.articules
           .where((element) => element.tags.contains(tag.title))
           .toList();
       debugPrint(store.articules.toString());
     } else {
-      await fetchArticules();
+      store.articulesFiltered = store.articules;
     }
+    notifyListeners();
+  }
+
+  void onSearch(String value) {
+    if (value.isEmpty) {
+      store.articulesFiltered = store.articules;
+      notifyListeners();
+      return;
+    }
+    store.articulesFiltered = store.articules
+        .where((element) => element.title.toLowerCase().contains(value))
+        .toList();
     notifyListeners();
   }
 

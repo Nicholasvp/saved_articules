@@ -14,7 +14,9 @@ class HomePage extends ConsumerWidget {
     final controller = ref.watch(homeController);
 
     return Scaffold(
-      appBar: const HomeAppBar(),
+      appBar: HomeAppBar(
+        controller: controller,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -48,19 +50,23 @@ class HomePage extends ConsumerWidget {
                       ],
                     ),
                   )
-                : Flexible(
-                    child: SingleChildScrollView(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.store.articules.length,
-                        itemBuilder: (context, index) {
-                          final articule = controller.store.articules[index];
-                          return CardArticule(
-                              articule: articule, controller: controller);
-                        },
+                : controller.store.articulesFiltered.isEmpty
+                    ? const Center(child: Text('Not Found'))
+                    : Flexible(
+                        child: SingleChildScrollView(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount:
+                                controller.store.articulesFiltered.length,
+                            itemBuilder: (context, index) {
+                              final articule =
+                                  controller.store.articulesFiltered[index];
+                              return CardArticule(
+                                  articule: articule, controller: controller);
+                            },
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
           ],
         ),
       ),
