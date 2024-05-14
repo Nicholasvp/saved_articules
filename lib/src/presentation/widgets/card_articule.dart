@@ -3,7 +3,6 @@ import 'package:saved_articules/src/domain/models/articule_model.dart';
 import 'package:saved_articules/src/presentation/controllers/home_controller.dart';
 import 'package:saved_articules/src/presentation/widgets/progress_articule.dart';
 import 'package:saved_articules/src/theme/custom_theme.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class CardArticule extends StatelessWidget {
   const CardArticule({
@@ -82,6 +81,14 @@ class CardArticule extends StatelessWidget {
                       ),
                       Text(
                         '${articule.timeToRead} reading',
+                        style: CustomTheme.label,
+                      ),
+                      Text(
+                        '${articule.priority} ',
+                        style: CustomTheme.label,
+                      ),
+                      Text(
+                        '${articule.addedAt} ',
                         style: CustomTheme.label,
                       ),
                     ],

@@ -13,7 +13,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       leading: InkWell(
-        onTap: () {},
+        onTap: () {
+          controller.openDialogSorting(context);
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18),
           child: SvgPicture.asset(

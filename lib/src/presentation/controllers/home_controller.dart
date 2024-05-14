@@ -114,6 +114,39 @@ class HomeController extends ChangeNotifier {
     final index = store.articules.indexOf(articule);
     return store.articules[index];
   }
+
+  void openDialogSorting(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Sort by'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: const Text('Priority'),
+                  onTap: () {
+                    store.articulesFiltered
+                        .sort((a, b) => a.priority.compareTo(b.priority));
+                    Navigator.pop(context);
+                    notifyListeners();
+                  },
+                ),
+                ListTile(
+                  title: const Text('Date'),
+                  onTap: () {
+                    store.articulesFiltered
+                        .sort((a, b) => a.addedAt.compareTo(b.addedAt));
+                    Navigator.pop(context);
+                    notifyListeners();
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
 }
 
 final homeController = ChangeNotifierProvider((ref) => HomeController());

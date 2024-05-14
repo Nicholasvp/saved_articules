@@ -52,19 +52,15 @@ class HomePage extends ConsumerWidget {
                   )
                 : controller.store.articulesFiltered.isEmpty
                     ? const Center(child: Text('Not Found'))
-                    : Flexible(
-                        child: SingleChildScrollView(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount:
-                                controller.store.articulesFiltered.length,
-                            itemBuilder: (context, index) {
-                              final articule =
-                                  controller.store.articulesFiltered[index];
-                              return CardArticule(
-                                  articule: articule, controller: controller);
-                            },
-                          ),
+                    : Expanded(
+                        child: ListView.builder(
+                          itemCount: controller.store.articulesFiltered.length,
+                          itemBuilder: (context, index) {
+                            final articule =
+                                controller.store.articulesFiltered[index];
+                            return CardArticule(
+                                articule: articule, controller: controller);
+                          },
                         ),
                       ),
           ],
