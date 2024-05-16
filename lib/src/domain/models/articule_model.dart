@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -15,6 +14,7 @@ class ArticuleModel {
   final String urlArticule;
   final String urlFavicon;
   final int? progress;
+  final String folderPath;
 
   ArticuleModel({
     required this.title,
@@ -28,6 +28,7 @@ class ArticuleModel {
     required this.urlArticule,
     required this.urlFavicon,
     this.progress,
+    required this.folderPath,
   });
 
   ArticuleModel copyWith({
@@ -42,6 +43,7 @@ class ArticuleModel {
     String? urlArticule,
     String? urlFavicon,
     int? progress,
+    String? folderPath,
   }) {
     return ArticuleModel(
       title: title ?? this.title,
@@ -55,6 +57,7 @@ class ArticuleModel {
       urlArticule: urlArticule ?? this.urlArticule,
       urlFavicon: urlFavicon ?? this.urlFavicon,
       progress: progress ?? this.progress,
+      folderPath: folderPath ?? this.folderPath,
     );
   }
 
@@ -71,6 +74,7 @@ class ArticuleModel {
       'urlArticule': urlArticule,
       'urlFavicon': urlFavicon,
       'progress': progress,
+      'folderPath': folderPath,
     };
   }
 
@@ -87,6 +91,7 @@ class ArticuleModel {
       urlArticule: map['urlArticule'] as String,
       urlFavicon: map['urlFavicon'] as String,
       progress: map['progress'] != null ? map['progress'] as int : 0,
+      folderPath: map['folderPath'] as String,
     );
   }
 
@@ -97,7 +102,7 @@ class ArticuleModel {
 
   @override
   String toString() {
-    return 'ArticuleModel(title: $title, description: $description, timeToRead: $timeToRead, tags: $tags, path: $path, priority: $priority, favorite: $favorite, addedAt: $addedAt, urlArticule: $urlArticule, urlFavicon: $urlFavicon, progress: $progress)';
+    return 'ArticuleModel(title: $title, description: $description, timeToRead: $timeToRead, tags: $tags, path: $path, priority: $priority, favorite: $favorite, addedAt: $addedAt, urlArticule: $urlArticule, urlFavicon: $urlFavicon, progress: $progress, folderPath: $folderPath)';
   }
 
   @override
@@ -114,7 +119,8 @@ class ArticuleModel {
         other.addedAt == addedAt &&
         other.urlArticule == urlArticule &&
         other.urlFavicon == urlFavicon &&
-        other.progress == progress;
+        other.progress == progress &&
+        other.folderPath == folderPath;
   }
 
   @override
@@ -129,6 +135,7 @@ class ArticuleModel {
         addedAt.hashCode ^
         urlArticule.hashCode ^
         urlFavicon.hashCode ^
-        progress.hashCode;
+        progress.hashCode ^
+        folderPath.hashCode;
   }
 }

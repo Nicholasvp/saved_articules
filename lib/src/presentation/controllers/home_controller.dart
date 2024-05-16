@@ -122,7 +122,11 @@ class HomeController extends ChangeNotifier {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Sort by'),
+            backgroundColor: Colors.white,
+            title: const Text(
+              'Sort By',
+              textAlign: TextAlign.center,
+            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

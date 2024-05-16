@@ -37,11 +37,14 @@ class CardArticule extends StatelessWidget {
                 ),
               ],
             ),
-            height: 150,
+            constraints: const BoxConstraints(
+              minHeight: 120,
+            ),
             child: Row(
               children: [
                 Container(
                   width: 30,
+                  height: 30,
                   margin: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16),
@@ -59,6 +62,7 @@ class CardArticule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           Text(
@@ -91,6 +95,14 @@ class CardArticule extends StatelessWidget {
                         controller.formatterDate(articule.addedAt),
                         style: CustomTheme.label,
                       ),
+                      Row(
+                        children: [
+                          const Icon(Icons.folder, size: 16),
+                          const SizedBox(width: 8),
+                          Text(articule.folderPath)
+                        ],
+                      ),
+                      const SizedBox(height: 8),
                     ],
                   ),
                 ),

@@ -27,7 +27,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         AnimSearchBar(
           width: 200,
           textController: controller.store.searchController,
-          onSuffixTap: (text) => controller.onSearch(text),
+          onSuffixTap: () =>
+              controller.onSearch(controller.store.searchController.text),
+          suffixIcon: const Icon(Icons.search),
           onSubmitted: (text) => controller.onSearch(text),
         )
       ],

@@ -13,7 +13,8 @@ class MyMock {
       "urlArticule": "https://en.wikipedia.org/wiki/Main_Page",
       "urlFavicon":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png",
-      "progress": 75
+      "progress": 75,
+      "folderPath": "Articules"
     },
     {
       "title": "Sample Article",
@@ -25,7 +26,9 @@ class MyMock {
       "favorite": false,
       "addedAt": 1635638200000,
       "urlArticule": "https://en.wikipedia.org/wiki/Main_Page",
-      "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png"
+      "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png",
+      "progress": 50,
+      "folderPath": "Articules"
     },
     {
       "title": "Lorem Ipsum",
@@ -39,7 +42,8 @@ class MyMock {
       "urlArticule":
           "https://medium.com/@ximya/clean-your-ui-code-in-flutter-7c58bf3e267d",
       "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png",
-      "progress": 25
+      "progress": 25,
+      "folderPath": "Articules"
     },
     {
       "title": "Sample Article",
@@ -51,7 +55,8 @@ class MyMock {
       "favorite": false,
       "addedAt": 1635637200000,
       "urlArticule": "https://en.wikipedia.org/wiki/Main_Page",
-      "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png"
+      "urlFavicon": "https://cdn-icons-png.flaticon.com/512/5968/5968906.png",
+      "folderPath": "Articules"
     },
     {
       "title": "Lorem Ipsum",
@@ -65,7 +70,8 @@ class MyMock {
       "urlArticule":
           "https://medium.com/@ximya/clean-your-ui-code-in-flutter-7c58bf3e267d",
       "urlFavicon":
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png"
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png",
+      "folderPath": "Articules"
     },
     {
       "title": "Sample Article",
@@ -79,7 +85,8 @@ class MyMock {
       "urlArticule": "https://en.wikipedia.org/wiki/Main_Page",
       "urlFavicon":
           "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png",
-      "progress": 44
+      "progress": 44,
+      "folderPath": "Articules"
     },
   ];
 

@@ -1,8 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
+
 import 'package:saved_articules/src/domain/models/helpers/helper.dart';
 import 'package:saved_articules/src/presentation/controllers/home_controller.dart';
 import 'package:saved_articules/src/presentation/widgets/favorite_buttom.dart';
@@ -11,7 +9,7 @@ import 'package:saved_articules/src/presentation/widgets/icon_text.dart';
 import 'package:saved_articules/src/presentation/widgets/progress_articule.dart';
 import 'package:saved_articules/src/presentation/widgets/tag_articule.dart';
 import 'package:saved_articules/src/theme/custom_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ArticuleContent extends ConsumerWidget {
@@ -31,6 +29,7 @@ class ArticuleContent extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Center(
@@ -121,8 +120,11 @@ class ArticuleContent extends ConsumerWidget {
                 );
               },
             ),
-            const Spacer(
-              flex: 1,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: 30,
+                maxHeight: 120,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +143,12 @@ class ArticuleContent extends ConsumerWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    launchUrlString(
+                      articule.urlArticule,
+                      mode: LaunchMode.inAppWebView,
+                    );
+                  },
                   style: CustomTheme.buttomBlack,
                   child: Text(
                     'OPEN IN APP',
