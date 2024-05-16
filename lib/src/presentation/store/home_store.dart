@@ -5,6 +5,9 @@ import 'package:saved_articules/src/domain/models/tag_model.dart';
 class HomeStore {
   // VARIABLES
   bool isLoading = false;
+  bool sortyByDate = false;
+  bool sortyByPriority = false;
+
   List<ArticuleModel> articules = [];
   List<ArticuleModel> articulesFiltered = [];
   List<TagModel> tags = [];

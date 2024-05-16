@@ -37,7 +37,7 @@ class CardArticule extends StatelessWidget {
                 ),
               ],
             ),
-            height: 120,
+            height: 150,
             child: Row(
               children: [
                 Container(
@@ -84,11 +84,11 @@ class CardArticule extends StatelessWidget {
                         style: CustomTheme.label,
                       ),
                       Text(
-                        '${articule.priority} ',
+                        'Priority: ${articule.priority} ',
                         style: CustomTheme.label,
                       ),
                       Text(
-                        '${articule.addedAt} ',
+                        controller.formatterDate(articule.addedAt),
                         style: CustomTheme.label,
                       ),
                     ],

@@ -1,6 +1,9 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:saved_articules/src/domain/models/helpers/helper.dart';
 import 'package:saved_articules/src/presentation/controllers/home_controller.dart';
 import 'package:saved_articules/src/presentation/widgets/favorite_buttom.dart';
 import 'package:saved_articules/src/presentation/widgets/icon_priority.dart';
@@ -8,6 +11,8 @@ import 'package:saved_articules/src/presentation/widgets/icon_text.dart';
 import 'package:saved_articules/src/presentation/widgets/progress_articule.dart';
 import 'package:saved_articules/src/presentation/widgets/tag_articule.dart';
 import 'package:saved_articules/src/theme/custom_theme.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ArticuleContent extends ConsumerWidget {
   const ArticuleContent({
@@ -70,17 +75,11 @@ class ArticuleContent extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 8),
-            TextButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.zero),
-              ),
-              child: Text(
-                articule.urlArticule,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.blue,
-                ),
+            Text(
+              Helper.getHostUrl(articule.urlArticule),
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.blue,
               ),
             ),
             const SizedBox(height: 8),
@@ -108,8 +107,7 @@ class ArticuleContent extends ConsumerWidget {
                 Icons.bookmark_border,
                 color: Colors.grey,
               ),
-              label:
-                  'Added on ${DateFormat.yMEd().format(articule.addedAt)} at ${DateFormat.Hm().format(articule.addedAt)}',
+              label: controller.formatterDate(articule.addedAt),
               color: Colors.grey,
             ),
             const SizedBox(height: 16),
@@ -123,12 +121,19 @@ class ArticuleContent extends ConsumerWidget {
                 );
               },
             ),
-            const Spacer(),
+            const Spacer(
+              flex: 1,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    launchUrlString(
+                      articule.urlArticule,
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
                   style: CustomTheme.buttomWhite,
                   child: const Text(
                     'OPEN IN BROWSER',

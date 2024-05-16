@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:saved_articules/src/data/repositories/home_repository.dart';
 import 'package:saved_articules/src/domain/models/articule_model.dart';
 import 'package:saved_articules/src/domain/models/tag_model.dart';
@@ -88,7 +89,8 @@ class HomeController extends ChangeNotifier {
       return;
     }
     store.articulesFiltered = store.articules
-        .where((element) => element.title.toLowerCase().contains(value))
+        .where((element) =>
+            element.title.toLowerCase().contains(value.toLowerCase()))
         .toList();
     notifyListeners();
   }
@@ -125,19 +127,30 @@ class HomeController extends ChangeNotifier {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ListTile(
+                  leading: const Icon(Icons.priority_high),
+                  trailing:
+                      store.sortyByPriority ? const Icon(Icons.check) : null,
                   title: const Text('Priority'),
                   onTap: () {
                     store.articulesFiltered
                         .sort((a, b) => a.priority.compareTo(b.priority));
+                    store.sortyByDate = false;
+                    store.sortyByPriority = true;
                     Navigator.pop(context);
                     notifyListeners();
                   },
                 ),
                 ListTile(
+                  leading: const Icon(Icons.calendar_month),
+                  trailing: store.sortyByDate ? const Icon(Icons.check) : null,
                   title: const Text('Date'),
                   onTap: () {
-                    store.articulesFiltered
-                        .sort((a, b) => a.addedAt.compareTo(b.addedAt));
+                    store.articulesFiltered.sort((a, b) => a.addedAt
+                        .toUtc()
+                        .microsecondsSinceEpoch
+                        .compareTo(b.addedAt.toUtc().millisecondsSinceEpoch));
+                    store.sortyByDate = true;
+                    store.sortyByPriority = false;
                     Navigator.pop(context);
                     notifyListeners();
                   },
@@ -146,6 +159,10 @@ class HomeController extends ChangeNotifier {
             ),
           );
         });
+  }
+
+  String formatterDate(DateTime date) {
+    return 'Added on ${DateFormat.yMEd().format(date)} at ${DateFormat.Hm().format(date)}';
   }
 }
 
